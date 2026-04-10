@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmberDic - AI Library</title>
+    <link href="videoLib.css" rel="stylesheet">
+</head>
+<body>
+
+ <header class="navbar">
+  <div class="container">
+    <div class="logo">
+      <h1>AmberDic-<span>AI</span></h1>
+      <div style="font-size: 0.9rem;"><i class="fas fa-brain"></i> For Electrical & Electronics Engineering Students</div>
+    </div>
+    <!-- <div class="nav-links">
+      <a class="nav-link" data-nav="videos"><i class="fas fa-play-circle"></i> Video Labs</a>
+     </div> -->
+  </div>
+</header>
+
+<main class="container">
+  <div class="tab-bar">
+    <button class="tab-btn" data-tab="videos"><i class="fas fa-video"></i><span style="color: rgb(6, 43, 110); font-size: 24px;"> Practical Tutorials</span></button>
+  </div>
+
+     <!-- VIDEOS PANEL -->
+  <div id="videos-panel" class="tab-panel">
+    <div class="section-title" style="color: #fff;"><i class="fas fa-chalkboard-user"></i> Practical Wiring &<span style="color: blue;"> Circuit Demos</span></div>
+    <div id="videoGrid" class="component-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px,1fr));"></div>
+  </div>
+  </main>
+
+  <script>
+    const videos = [
+    { id: 1, title: "Complete Resistor & LED Wiring Guide", embed: "https://www.youtube.com/embed/9w5G2wP9dBM", desc: "Practical circuit building on breadboard, current calculation." },
+    { id: 2, title: "MOSFET as Switch - Power Electronics", embed: "https://www.youtube.com/embed/te5IZFJc4hA", desc: "Wiring diagram, gate resistor, load control." },
+    { id: 3, title: "Op-Amp Inverting Amplifier Tutorial", embed: "https://www.youtube.com/embed/7fyHtFKOvQw", desc: "Component selection and gain calculation." },
+    { id: 4, title: "Full Bridge Rectifier + Capacitor Filter", embed: "https://www.youtube.com/embed/8t4N6cPm9Qk", desc: "AC to DC conversion, smoothing, wiring diagram." },
+    { id: 5, title: "Transistor (NPN) Switching Circuit", embed: "https://www.youtube.com/embed/FmSfOdEdK6s", desc: "Base resistor, load wiring, saturation region." },
+    { id: 6, title: "Capacitors in Power Supplies - Ripple filtering", embed: "https://www.youtube.com/embed/BcJ6UdDx1vg", desc: "Electrolytic capacitor placement and measurements." },
+    { id: 7, title: "Complete House wiring", embed: "https://www.youtube.com/embed/9w5G2wP9dBM", desc: "Practical house wiring." },
+    { id: 8, title: "Solar installation", embed: "https://www.youtube.com/embed/te5IZFJc4hA", desc: "Wiring diagram." },
+    { id: 9, title: "Soldering iron", embed: "https://www.youtube.com/embed/7fyHtFKOvQw", desc: "How to fix a soldering iron if you face any challenge with it." },
+    { id: 10, title: "Circuit programming", embed: "https://www.youtube.com/embed/8t4N6cPm9Qk", desc: "Programming your circuit." },
+    { id: 11, title: "Robotics", embed: "https://www.youtube.com/embed/FmSfOdEdK6s", desc: "How to make a simple robot." },
+    { id: 12, title: "Multimeter", embed: "https://www.youtube.com/embed/BcJ6UdDx1vg", desc: "How to measure components using a multimeter." }
+  ];
+
+   function renderVideos() {
+    const vGrid = document.getElementById("videoGrid");
+    vGrid.innerHTML = videos.map(v => `
+      <div class="comp-card" style="cursor:default;">
+        <div style="padding:0;"><iframe width="100%" height="200" src="${v.embed}" frameborder="0" allowfullscreen></iframe></div>
+        <div class="comp-content"><h3>${v.title}</h3><p>${v.desc}</p></div>
+      </div>
+    `).join("");
+  }
+  
+  // Tab logic
+  //  const vidPanel = document.getElementById("videos-panel");
+
+  // function activateTab(tabId) {
+  //   if (tabId === "dictionary") {
+  //     dictPanel.classList.add("active-panel");
+  //     vidPanel.classList.remove("active-panel");
+  //     tabBtns.forEach(btn => btn.dataset.tab === "dictionary" ? btn.classList.add("active") : btn.classList.remove("active"));
+  //     navLinks.forEach(link => link.dataset.nav === "dictionary" ? link.classList.add("active") : link.classList.remove("active"));
+  //     renderComponents(document.getElementById("compSearch")?.value || "");
+  //   } else {
+  //     dictPanel.classList.remove("active-panel");
+  //     vidPanel.classList.add("active-panel");
+  //     tabBtns.forEach(btn => btn.dataset.tab === "videos" ? btn.classList.add("active") : btn.classList.remove("active"));
+  //     navLinks.forEach(link => link.dataset.nav === "videos" ? link.classList.add("active") : link.classList.remove("active"));
+  //     renderVideos();
+  //   }
+  // }
+
+  renderVideos();
+  </script>
+</body>
+</html>

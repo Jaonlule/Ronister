@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AmberDic-AI - EEE Component Encyclopedia</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link  rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showHome()">AmberDic<span>-AI</span></div>
+  <div class="nav-links">
+    <a href="#" onclick="showHome()">Components</a>
+    <a href="videoLibrary.html">Video Library</a>
+    <!-- <a href="#">About</a> -->
+  </div>
+  <div class="nav-search">
+    <span class="search-icon">⌕</span>
+    <input type="text" id="searchInput" placeholder="Search..." oninput="filterSearch(this.value)">
+  </div>
+</nav>
+
+<div id="home-page" class="page active">
+  <!-- Hero section-->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-badge">For Electrical & Electronics Engineering Students</div>
+    <h1>The <em>Complete</em><br>EEE Component<br>Encyclopedia</h1>
+    <p>Master every electronic component — from passive resistors to complex integrated circuits. Wiring diagrams, formulas, applications, and interactive quizzes all in one place.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('grid-anchor').scrollIntoView({behavior:'smooth'})">Explore Components</button>
+      <button class="btn-secondary"><a  href="videoLibrary.html">Watch Tutorials ↗</a></button>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div style="padding:0 2rem;">
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Components</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Wiring Diagrams</div></div>
+      <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Formulas</div></div>
+      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Always</div></div>
+    </div>
+  </div>
+
+  <!-- Grid anchor & filters -->
+  <div id="grid-anchor" class="section-header">
+    <div class="section-title">Component <span>Library</span></div>
+    <div class="filter-pills">
+      <button class="pill active" onclick="filterCategory('all',this)">All</button>
+      <button class="pill" onclick="filterCategory('passive',this)">Passive</button>
+      <button class="pill" onclick="filterCategory('active',this)">Active</button>
+      <button class="pill" onclick="filterCategory('power',this)">Power</button>
+      <button class="pill" onclick="filterCategory('ic',this)">ICs</button>
+      <button class="pill" onclick="filterCategory('sensor',this)">Sensors</button>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="components-grid" id="componentsGrid"></div>
+
+  
+  <footer>
+    <div class="footer-logo">AmberDic<span>-AI</span></div>
+    <p>A comprehensive electronics reference for EEE students. Built for learning, mastery, and practice.</p>
+    <p>Made with <i class="fa fas-heart"></i> By <em style="color: aqua; text-transform: uppercase;">Ronister Sikalongo | SIN: 2410487853</em></p>
+  </footer>
+</div>
+
+<!-- DETAIL PAGE -->
+<div id="detail-page" class="page">
+  <div class="detail-header">
+    <div class="detail-header-inner">
+      <div class="breadcrumb">
+        <a onclick="showHome()">Home</a>
+        <span>></span>
+        <a onclick="showHome()">Components</a>
+        <span>></span>
+        <span id="detail-breadcrumb">...</span>
+      </div>
+      <div class="detail-hero">
+        <div class="detail-image-panel" id="detail-main-image"></div>
+        <div class="detail-info">
+          <div id="detail-category-badge"></div>
+          <h1 id="detail-name"></h1>
+          <div class="symbol-line" id="detail-symbol"></div>
+          <p id="detail-description"></p>
+          <div class="spec-grid" id="detail-specs"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-tabs-wrap">
+    <div class="detail-tabs">
+      <button class="dtab active" onclick="switchTab('overview',this)">Overview</button>
+      <button class="dtab" onclick="switchTab('wiring',this)">Wiring Diagrams</button>
+      <button class="dtab" onclick="switchTab('formulas',this)">Formulas</button>
+      <button class="dtab" onclick="switchTab('applications',this)">Applications</button>
+      <button class="dtab" onclick="switchTab('quiz',this)">Quick Quiz</button>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="content-section">
+        <h2>How It Works</h2>
+        <p class="body-text" id="how-it-works"></p>
+      </div>
+      <div class="pros-cons">
+        <div class="pros-box">
+          <h3>✦ Advantages</h3>
+          <ul class="pros-cons-list" id="advantages-list"></ul>
+        </div>
+        <div class="cons-box">
+          <h3>✦ Disadvantages</h3>
+          <ul class="pros-cons-list" id="disadvantages-list"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- WIRING -->
+    <div id="tab-wiring" class="tab-content">
+      <div class="wiring-diagrams" id="wiring-container"></div>
+    </div>
+
+    <!-- FORMULAS -->
+    <div id="tab-formulas" class="tab-content">
+      <div id="formulas-container"></div>
+    </div>
+
+    <!-- APPLICATIONS -->
+    <div id="tab-applications" class="tab-content">
+      <div class="content-section">
+        <h2>Real-World Applications</h2>
+        <p class="body-text" id="applications-desc"></p>
+        <div class="applications-grid" id="applications-grid"></div>
+      </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="tab-quiz" class="tab-content">
+      <div class="quiz-container">
+        <div class="section-label">Test Your Knowledge</div>
+        <div class="quiz-question" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <button class="btn-primary" id="quiz-next-btn" style="display:none" onclick="nextQuestion()">Next Question →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script defer src="script.js"></script>
+</body>
+</html>
